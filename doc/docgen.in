@@ -1,0 +1,78 @@
+#!/usr/bin/perl 
+#
+
+require "document.pl";
+
+(@ARGV == 1) or die "usage: genhtml.pl html\n";
+ 
+$html  = shift;
+
+$time = localtime;
+
+# generate overall index file
+
+open(INDEX, ">$html/index.html") or die "Could not open index file\n";
+print INDEX <<END1;
+<html>
+<head>
+<title>l3ccd software</title>
+<link rel=stylesheet href="style.css" type="text/css">
+</head>
+<body>
+<h1>l3ccd, version ZzZzZ</h1>
+<p>
+This is the main page for documentation on the C++-based l3ccd simulation pacakage.
+
+<p>
+<table>
+<tr><td><a href="http://deneb.astro.warwick.ac.uk/phsaap/software/l3ccd.tar.gz">binary.tar.gz</a></td>
+<td>gzipped tar file of the software to download.</td></tr>
+</table>
+
+<p><hr>
+<address>Page generated $time</address>
+</body></html>
+END1
+close(INDEX);
+
+
+foreach $class (sort keys %classes){
+    open(CLASS,">$html/$class.html") or die "Could not open html/$class.html\n";
+    print CLASS "<html>\n";
+    print CLASS "<head>\n";
+    print CLASS "<title>$classes{$class}</title>\n";
+    print CLASS "<link rel=stylesheet href=\"style.css\" type=\"text/css\">\n";
+    print CLASS "</head>\n";
+    print CLASS "<body>\n";
+    print CLASS "<h1>$classes{$class}</h1>\n\n<p>\n";
+    print CLASS "<table>\n";
+    foreach $item (sort keys %index){
+	$print = 0;
+	foreach $clss (@{$index{$item}->{class}}){
+	    if($clss eq $class){$print = 1;}
+	}
+	if($print){
+	    print CLASS 
+		"<tr><td><a href=\"$index{$item}->{file}\">".
+		    "$item</a></td><td>".
+			"$index{$item}->{description}</td>\n";
+	}
+    }
+    print CLASS "</table><p><hr>\n";
+    print CLASS "<address>Page generated $time</address>\n";
+    print CLASS "</body></html>\n";
+    close(CLASS);
+}
+
+exit;
+
+
+
+
+
+
+
+
+
+
+
