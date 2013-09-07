@@ -1,6 +1,6 @@
 #include <cstdlib>
 #include <cmath>
-#include "trm_l3ccd.h"
+#include "trm/l3ccd.h"
 
 /* Computes the start probability of a register in which the multiplication probability
  * is assumed to increase from start to end logarithmically.

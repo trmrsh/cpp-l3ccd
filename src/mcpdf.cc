@@ -82,12 +82,12 @@ the RMS of this, which is assumed to be gaussian.}
 #include <cfloat>
 #include <climits>
 #include <iostream>
-#include "trm_subs.h"
-#include "trm_constants.h"
-#include "trm_array1d.h"
-#include "trm_format.h"
-#include "trm_input.h"
-#include "trm_l3ccd.h"
+#include "trm/subs.h"
+#include "trm/constants.h"
+#include "trm/array1d.h"
+#include "trm/format.h"
+#include "trm/input.h"
+#include "trm/l3ccd.h"
 
 int main (int argc, char *argv[]){
 
