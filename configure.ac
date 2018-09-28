@@ -1,11 +1,12 @@
 dnl Process this file with autoconf to produce a configure script.
 
-AC_INIT([src/fpdf.cc])
+AC_INIT([l3ccd], [1.0.1])
+AC_CONFIG_SRCDIR([src/fpdf.cc])
 
 dnl Get rid of all the -D stuff
 AM_CONFIG_HEADER(config.h)
 
-AM_INIT_AUTOMAKE([l3ccd], [1.0.1])
+AM_INIT_AUTOMAKE
 
 AC_PROG_MAKE_SET
 
